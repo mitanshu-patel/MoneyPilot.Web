@@ -21,6 +21,14 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+   {
+    rel: "stylesheet",
+    href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css",
+  },
+   {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined",
+  },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -35,6 +43,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         <ScrollRestoration />
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/app.js"></script>
         <Scripts />
       </body>
     </html>
