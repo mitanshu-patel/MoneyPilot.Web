@@ -1,6 +1,8 @@
-export function Register(){
-    return (
-           <main className="auth-shell">
+import { NavLink } from "react-router";
+
+export function Register() {
+  return (
+    <main className="auth-shell">
       <section className="auth-card">
         <div className="branding">
           <h2>MoneyPilot</h2>
@@ -16,16 +18,29 @@ export function Register(){
 
           <div className="field full">
             <label htmlFor="register-password">Password</label>
-            <input id="register-password" type="password" minLength={6} required />
+            <input
+              id="register-password"
+              type="password"
+              minLength={6}
+              required
+            />
           </div>
 
           <div className="field full">
-            <button className="btn btn-primary" type="submit">Register</button>
+            <button className="btn btn-primary" type="submit">
+              Register
+            </button>
           </div>
         </form>
 
-        <p className="helper">Already have an account? <a href="login"><strong>Go to login</strong></a>.</p>
+        <p className="helper">
+          Already have an account?{" "}
+          <NavLink to="/login">
+            <strong>Go to login</strong>
+          </NavLink>
+          .
+        </p>
       </section>
     </main>
-    )
+  );
 }

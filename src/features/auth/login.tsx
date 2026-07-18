@@ -1,3 +1,5 @@
+import { NavLink } from "react-router";
+
 export function Login() {
   return (
     <main className="auth-shell">
@@ -28,9 +30,9 @@ export function Login() {
 
         <p className="helper">
           New to MoneyPilot?{" "}
-          <a href="register">
+          <NavLink to="/sign-up">
             <strong>Create an account</strong>
-          </a>
+          </NavLink>
           .
         </p>
       </section>
