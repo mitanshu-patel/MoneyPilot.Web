@@ -1,4 +1,11 @@
+import { NavLink, useNavigate } from "react-router";
+
 export default function Home() {
+  const navigate = useNavigate();
+  function logout() {
+    localStorage.removeItem("userSession");
+    navigate("/login");
+  }
   return (
     <main className="flex items-center justify-center pt-16 pb-4">
       <div className="app-shell" id="dashboard-root">
@@ -9,7 +16,7 @@ export default function Home() {
           </div>
           <div className="actions">
             <span id="active-user" className="helper"></span>
-            <button id="logout-btn" className="btn btn-ghost">
+            <button id="logout-btn" className="btn btn-ghost" onClick={logout}>
               Logout
             </button>
           </div>
@@ -18,22 +25,22 @@ export default function Home() {
         <div className="layout">
           <aside className="sidebar">
             <nav className="nav-links">
-              <a className="nav-link" data-page="dashboard" href="dashboard">
+              <NavLink className="nav-link" data-page="dashboard" to="/">
                 Overview
-              </a>
-              <a className="nav-link" data-page="accounts" href="accounts">
+              </NavLink>
+              <NavLink className="nav-link" data-page="accounts" to="/accounts">
                 Bank Accounts
-              </a>
-              <a
+              </NavLink>
+              <NavLink
                 className="nav-link"
                 data-page="investments"
-                href="investments"
+                to="/investments"
               >
                 Investments
-              </a>
-              <a className="nav-link" data-page="expenses" href="expenses">
+              </NavLink>
+              <NavLink className="nav-link" data-page="expenses" to="/expenses">
                 Expenses
-              </a>
+              </NavLink>
             </nav>
           </aside>
 

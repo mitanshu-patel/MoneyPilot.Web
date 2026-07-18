@@ -1,6 +1,25 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import type { SessionInfo } from "../../types/SessionInfo";
 
 export function Login() {
+  const navigate = useNavigate();
+
+  function login(f: React.SubmitEvent<HTMLFormElement>) {
+    debugger;
+    f.preventDefault();
+    const form = f.target;
+    const formData = new FormData(form as HTMLFormElement);
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    // Perform login logic here (e.g., API call)
+    // For demonstration, let's assume the login is successful and we get a token
+    const token = "dummy-token"; // Replace with actual token from API response
+    const session = { Email: email as string, Token: token } as SessionInfo;
+    localStorage.setItem("userSession", JSON.stringify(session));
+    navigate("/"); // Redirect to the home page after successful login
+  }
+
   return (
     <main className="auth-shell">
       <section className="auth-card">
@@ -10,15 +29,15 @@ export function Login() {
         </div>
         <p>Track your expenses, investments, and accounts from one place.</p>
 
-        <form id="login-form" className="form-grid" autoComplete="off">
+        <form onSubmit={login} className="form-grid" autoComplete="off">
           <div className="field full">
             <label htmlFor="login-email">Email</label>
-            <input id="login-email" type="email" required />
+            <input id="login-email" name="email" type="email" required />
           </div>
 
           <div className="field full">
             <label htmlFor="login-password">Password</label>
-            <input id="login-password" type="password" required />
+            <input id="login-password" name="password" type="password" required />
           </div>
 
           <div className="field full">
