@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router";
+import { authMiddleware } from "./authmiddleware";
+import { AccountsList } from "./features/accounts/AccountsList";
 import Home from "./features/dashboard/home";
 import { Login } from "./features/auth/login";
 import { Register } from "./features/auth/register";
-import { authMiddleware } from "./authmiddleware";
-import { AccountsList } from "./features/accounts/accounts-list";
 
 export const router = createBrowserRouter([
   {

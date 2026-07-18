@@ -7,6 +7,12 @@ export function AccountsList() {
     navigate("/login");
   }
 
+  const bankAccounts = [
+    { holderName: "John Doe", accountNumber: "123456789", balance: 1000 },
+    { holderName: "Jane Smith", accountNumber: "987654321", balance: 2500 },
+    // Add more bank accounts as needed
+  ];
+
   return (
     <div className="app-shell">
       <header className="topbar">
@@ -65,7 +71,21 @@ export function AccountsList() {
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody id="accounts-body"></tbody>
+              <tbody id="accounts-body">
+                {bankAccounts.map((account, index) => (
+                  <tr key={index}>
+                    <td>{account.holderName}</td>
+                    <td>{account.accountNumber}</td>
+                    <td>{account.balance}</td>
+                    <td>
+                      <div className="actions">
+                        <button className="btn btn-danger">Edit</button>
+                        <button className="btn btn-ghost">Delete</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </main>
