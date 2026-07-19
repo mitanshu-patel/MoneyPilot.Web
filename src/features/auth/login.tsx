@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router";
 import type { SessionInfo } from "../../types/SessionInfo";
+import { authenticate } from "../../api/auth/auth-service";
 
 export function Login() {
   const navigate = useNavigate();
@@ -12,12 +13,16 @@ export function Login() {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    // Perform login logic here (e.g., API call)
-    // For demonstration, let's assume the login is successful and we get a token
-    const token = "dummy-token"; // Replace with actual token from API response
-    const session = { Email: email as string, Token: token } as SessionInfo;
-    localStorage.setItem("userSession", JSON.stringify(session));
-    navigate("/"); // Redirect to the home page after successful login
+    authenticate(email as string, password as string)
+      .then((data) => {
+        const token = data.Token;
+        const session = { Email: email as string, Token: token } as SessionInfo;
+        localStorage.setItem("userSession", JSON.stringify(session));
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+      });
   }
 
   return (
@@ -37,7 +42,12 @@ export function Login() {
 
           <div className="field full">
             <label htmlFor="login-password">Password</label>
-            <input id="login-password" name="password" type="password" required />
+            <input
+              id="login-password"
+              name="password"
+              type="password"
+              required
+            />
           </div>
 
           <div className="field full">
